@@ -1,8 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie_app/api/api.dart';
 import 'package:movie_app/widgets/custom_scroll_widget.dart';
 import 'package:movie_app/widgets/custom_text.dart';
+import 'package:movie_app/widgets/trending_slider.dart';
+
+import 'models/trending_movie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +15,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late Future<List<TrendingMovie>> trendingMovies;
+  @override
+  void initState() {
+    super.initState();
+    trendingMovies = Api().getTrendingMovies();
+  }
+
   @override
   Widget build(BuildContext context) {
     var myBox = const SizedBox(
@@ -44,29 +54,19 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 18,
             ),
             SizedBox(
-              width: double.infinity,
-              child: CarouselSlider.builder(
-                itemCount: 10,
-                options: CarouselOptions(
-                  height: 300,
-                  autoPlay: true,
-                  viewportFraction: 0.55,
-                  enlargeCenterPage: true,
-                  pageSnapping: true,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  autoPlayAnimationDuration: const Duration(seconds: 1),
-                ),
-                itemBuilder: (context, itemIndex, pageViewIndex) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      height: 300,
-                      width: 300,
-                      color: Colors.amber,
-                    ),
-                  );
-                },
-              ),
+              child: FutureBuilder(
+                  future: trendingMovies,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(child: Text(snapshot.error.toString()));
+                    } else if (snapshot.hasData) {
+                      return TrendingSlider(
+                        snapshot: snapshot,
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  }),
             ),
             myBox,
             const CustomText(

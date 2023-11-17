@@ -1,0 +1,21 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:movie_app/constants.dart';
+import 'package:movie_app/models/trending_movie.dart';
+
+class Api {
+  static const _trendingUrl =
+      'https://api.themoviedb.org/3/trending/movie/day?api_key=${Constants.apiKey}';
+
+  Future<List<TrendingMovie>> getTrendingMovies() async {
+    final response = await http.get(Uri.parse(_trendingUrl));
+    if (response.statusCode == 200) {
+      final decodeData = json.decode(response.body)['results'] as List;
+      print(decodeData);
+      return decodeData.map((json) => TrendingMovie.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load movies');
+    }
+  }
+}
