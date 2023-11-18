@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomScrollWidget extends StatelessWidget {
-  const CustomScrollWidget({super.key});
+  const CustomScrollWidget({super.key, required this.snapshot});
 
+  final AsyncSnapshot snapshot;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -11,7 +12,7 @@ class CustomScrollWidget extends StatelessWidget {
         child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: 10,
+          itemCount: snapshot.data!.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8),
