@@ -5,7 +5,7 @@ import 'package:movie_app/widgets/custom_scroll_widget.dart';
 import 'package:movie_app/widgets/custom_text.dart';
 import 'package:movie_app/widgets/trending_slider.dart';
 
-import 'models/trending_movie.dart';
+import '../models/trending_movie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
