@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/constants.dart';
 
 class CustomScrollWidget extends StatelessWidget {
   const CustomScrollWidget({super.key, required this.snapshot});
@@ -18,11 +19,13 @@ class CustomScrollWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  height: 200,
-                  width: 150,
-                  color: Colors.amber,
-                ),
+                child: SizedBox(
+                    height: 200,
+                    width: 150,
+                    child: Image.network(
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                        '${Constants.imagePath}${snapshot.data![index].posterPath}')),
               ),
             );
           },
