@@ -16,6 +16,7 @@ class Api {
     final response = await http.get(Uri.parse(_trendingUrl));
     if (response.statusCode == 200) {
       final decodeData = json.decode(response.body)['results'] as List;
+      // ignore: avoid_print
       print(decodeData);
       return decodeData.map((json) => TrendingMovie.fromJson(json)).toList();
     } else {
@@ -27,6 +28,7 @@ class Api {
     final response = await http.get(Uri.parse(_topratedUrl));
     if (response.statusCode == 200) {
       final decodeData = json.decode(response.body)['results'] as List;
+      // ignore: avoid_print
       print(decodeData);
       return decodeData.map((json) => TrendingMovie.fromJson(json)).toList();
     } else {
@@ -38,6 +40,7 @@ class Api {
     final response = await http.get(Uri.parse(_upcomingUrl));
     if (response.statusCode == 200) {
       final decodeData = json.decode(response.body)['results'] as List;
+      // ignore: avoid_print
       print(decodeData);
       return decodeData.map((json) => TrendingMovie.fromJson(json)).toList();
     } else {
