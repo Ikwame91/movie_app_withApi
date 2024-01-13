@@ -20,7 +20,7 @@ class Api {
       print(decodeData);
       return decodeData.map((json) => TrendingMovie.fromJson(json)).toList();
     } else {
-      throw Exception('Failed to load movies');
+      throw Exception('Failed to load Trending movies');
     }
   }
 
@@ -32,7 +32,7 @@ class Api {
       print(decodeData);
       return decodeData.map((json) => TrendingMovie.fromJson(json)).toList();
     } else {
-      throw Exception('Failed to load movies');
+      throw Exception('Failed to load Top Rated movies');
     }
   }
 
@@ -44,7 +44,7 @@ class Api {
       print(decodeData);
       return decodeData.map((json) => TrendingMovie.fromJson(json)).toList();
     } else {
-      throw Exception('Failed to load movies');
+      throw Exception('Failed to load Upcoming movies');
     }
   }
 }

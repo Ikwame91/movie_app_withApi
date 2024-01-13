@@ -60,7 +60,7 @@ class DetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(10),
@@ -84,29 +84,31 @@ class DetailScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                'Rating: ',
-                                style: GoogleFonts.openSans(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w400,
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Rating: ',
+                                  style: GoogleFonts.openSans(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
-                              ),
-                              const Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              Text(
-                                '${movie.voteAverage.toStringAsFixed(1)}/10',
-                              ),
-                            ],
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                Text(
+                                  '${movie.voteAverage.toStringAsFixed(1)}/10',
+                                ),
+                              ],
+                            ),
                           ),
                         )
                       ],
